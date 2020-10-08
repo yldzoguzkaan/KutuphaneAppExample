@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Kutuphane App</title>
+	</head>
+	<body>
+		<div id = menu>
+			<div id="searchbook">
+			<h1>Kitap Arama Ekrani</h1>
+			<h3>ISBN ile arama</h3>
+			<p>
+			<input type="text" name="bookname" />
+			</p>
+			<h3>Kitap Adi ile arama</h3>
+			<h4>Format: kitap_adi</h4>
+			<p>
+			<input type="text" name="bookname" />
+			</p>
+			<p>
+			<button onclick="">Kitap Ara</button>
+			</p>
+		</div>
+		<div id="takeBook">
+			<h1>Kitap Alma Ekrani</h1>
+			<p> Kitaplar Listelenecek </p>
+			<p>
+			<input type="text" name="bookisbn" />
+			</p>
+			<p>
+			<button onclick="">Kitap Al</button>
+			</p>
+		</div>
+		<div id="giveBook">
+			<h1>Kitap Verme Ekrani</h1>
+			<form action="Service/book/giveBook" method="post"
+				enctype="multipart/form-data">
+				<p>
+					Select a file : <input type="file" name="file" size="45" />
+				</p>
+				<button onclick="">Kitap Ver</button>
+			</form>
+		</div>
+		</div>
+		<div id = content >
+			<p>Tüm içerikler burada gözükecek</p>
+		</div>
+	</body>
+</html>

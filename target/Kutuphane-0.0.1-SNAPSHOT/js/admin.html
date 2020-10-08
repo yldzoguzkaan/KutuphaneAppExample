@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kutuphane App</title>
+</head>
+<body>
+	<div id="menu">
+		<div id="kitapEkle">
+			<h1>Kitap Ekleme Ekraný</h1>
+			<form action="Service/book/bookUpload" method="post"
+				enctype="multipart/form-data">
+				<p>
+					Select a file : <input type="file" name="file" size="45" />
+				</p>
+				<button onclick="insertBook()">Ekle</button>
+			</form>
+		</div>
+		<div id="zamanAtlat">
+			<h1>Zaman Atlatma Ekraný</h1>
+			<h3>Zaman Formatý : gg.aa.yyyy</h3>
+			<form action="Service/time/skipTime" method="post">
+				<p>
+					Atlacýlacak Gun Sayýsý : <input type="text" name="time" />
+					<button onclick="skipTime()">Ekle</button>
+				</p>
+			</form>
+		</div>
+		<div id="kullaniciListele">
+			<h1>Kullanici Listeleme Ekraný</h1>
+			<button onclick="listUsers()">Listele</button>
+		</div>
+	</div>
+	<div id="content">
+		<p>Tüm içerikler burada gözükecek</p>
+	</div>
+	<script type="text/javascript">
+		/** aktif iþler **/
+		function insertBook() {
+			var xhttp = new XMLHttpRequest();
+			//user login
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("content").innerHTML = xhttp.responseText;
+				}
+			};
+			xhttp.open("POST",
+					"http://localhost:8080/Kutuphane/Service/book/bookUpload",
+					true);
+			xhttp.setRequestHeader("Content-type", "multipart/form-data");
+			xhttp.send(s);
+		}
+		function skipTime() {
+			var xhttp = new XMLHttpRequest();
+			//user login
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("content").innerHTML = xhttp.responseText;
+				}
+			};
+			xhttp.open("POST",
+					"http://localhost:8080/Kutuphane/Service/time/skipTime",
+					true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send(s);
+		}
+		function listUsers() {
+			var xhttp = new XMLHttpRequest();
+			//user login
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var myArr = JSON.parse(this.responseText);
+					myFunction(myArr);
+				}
+			};
+			xhttp.open("GET","http://localhost:8080/Kutuphane/Service/user/listUsersGet",true);
+			//xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send();
+		}
+	</script>
+</body>
+</html>
